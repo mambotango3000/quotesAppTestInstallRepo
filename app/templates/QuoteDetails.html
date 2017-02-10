@@ -1,0 +1,108 @@
+<!--This is way too heavy on inline css.-->
+<body>
+<div  style="padding-left:20px; padding-right:20px">
+        <button ng-controller="MainMenuController" id="sidebarToggle" class="btn btn-primary" ng-click="goHome()">
+          <i class="fa fa-angle-left"></i><i class="fa fa-angle-left"></i>
+        </button>
+    <div class="row">
+      <div class="span11">
+
+        <h2 style="color: #798269">{{quote.name | uppercase}} </h2>
+      </div>
+    </div>
+
+    <div class="row" style="font-size: 15px">
+      <div class="span6">
+        <div><strong>Exchange:&nbsp</strong> {{quote.exchange}}</div>
+        <div><strong>Ticker:&nbsp</strong> {{quote.ticker | uppercase}}</div>
+        <div><strong>% Change:&nbsp</strong> {{quote.PercentChange}}</div>
+        <div><strong>Days Range:&nbsp</strong> {{quote.DaysRange}}</div>
+      </div>
+      <span class="span3" id="quote">
+        <h2 ng-class="{'color-green': quote.price > quote.PreviousClose, 'color-red': quote.price < quote.PreviousClose, 'color-blue': quote.price === quote.PreviousClose}">${{quote.price | number:2}}</h2>
+      </span>
+    </div>
+
+    <hr>
+
+<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true" style="margin-top:50px">
+
+  <div class="panel panel-default" style="border-style: solid; border:3px;">
+    <div class="panel-heading raisedbox" role="tab" id="headingOne">
+      <h4 class="panel-title" style="text-align:center">
+        <a role="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne" style="text-decoration:none; color:#c8c8c8; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
+          Financial Information
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+      <div class="panel-body" style="margin-left:5pc; margin-right:5pc">
+
+        <div style="padding:10px"><strong>Market Capitalization</strong> <span style="float:right">{{quote.MarketCapitalization}}</span></div>
+        <div style="padding:10px"><strong>Book Value/Share:</strong><span style="float:right"> {{quote.BookValue | currency}}</span></div>
+        <div style="padding:10px"><strong>Price/Book:</strong><span style="float:right" ng-bind="quote.BookValue"> {{quote.PriceBook | currency}}</span></div>
+        <div style="padding:10px"><strong>Price/Sales:</strong><span style="float:right"> {{quote.PriceSales | currency}}</span></div>
+        <div style="padding:10px"><strong>Price/Earnings:</strong><span style="float:right"> {{quote.PERatio}}</span></div>
+
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default" style="border-style: solid; border:3px; border-color:white">
+    <div class="panel-heading raisedbox" role="tab" id="headingTwo">
+        <h4 class="panel-title" style="text-align:center">
+          <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="text-decoration:none; color:#c8c8c8; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial,sans-serif">
+            Technical Information
+          </a>
+        </h4>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+      <div class="panel-body"  style="margin-left:5pc; margin-right:5pc">
+
+        <div style="padding:10px"><strong>Previous Close:</strong> <span style="float:right">{{quote.PreviousClose | currency}}</span></div>
+        <div style="padding:10px"><strong>Today's Volume:</strong> <span style="float:right">{{quote.Volume | number}}</span></div>
+        <div style="padding:10px"><strong>Avg. Daily Volume:</strong><span style="float:right"> {{quote.AverageDailyVolume | number}}</span></div>
+        <div style="padding:10px"><strong>52 Wk Range:</strong> <span style="float:right">{{quote.YearsRange | number:2}}</span></div>
+        <div style="padding:10px"><strong>50 Day MA:</strong> <span style="float:right">{{quote.FiftydayMovingAverage | currency}}</span></div>
+        <!--<div id="bottom"></div>-->
+
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default"style="border-style: solid; border:3px; border-color:white">
+    <div class="panel-heading raisedbox" role="tab" id="headingThree">
+      <h4 class="panel-title" style="text-align:center">
+        <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree" style="text-decoration:none; color:#c8c8c8; font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif">
+          Earnings & Dividends
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+      <div class="panel-body"  style="margin-left:5pc; margin-right:5pc">
+
+        <div style="padding:10px"><strong>Earning/Share:</strong> <span style="float:right">{{quote.EarningsShare | currency}}</span></div>
+        <div style="padding:10px"><strong>Dividend:</strong><span style="float:right"> {{quote.DividendShare  | currency}}</span></div>
+        <div style="padding:10px"><strong>Yield:</strong><span style="float:right"> {{quote.DividendYield}}</span></div>
+        <!--<div id="bottom"></div>-->
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+</div>
+
+<script src="~/js/bootstrap.min.js"></script>
+
+<script>
+$(document).ready(function(){
+    $("a").mouseover(function(){
+        $(this).css("color", "#798269");
+    });
+    $("a").mouseout(function(){
+        $("a").css("color", "#c8c8c8");
+    });
+});
+</script>
+
+</body>

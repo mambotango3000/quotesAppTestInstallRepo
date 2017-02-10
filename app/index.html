@@ -1,0 +1,64 @@
+<!doctype html>
+<html ng-app="quotesApp">
+<head>
+    <base href="/"/>
+    <!--Using a custom Bootstrap 2 theme. Will catch up to the universe at some point-->
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+
+<body ng-cloak>
+<div class="container">
+    <div ng-controller="MainMenuController" class="navbar">
+        <div class="navbar-inner">
+            <ul class="nav">
+                <li><a style="color:#798269; font-size:17px" href="#" ng-click="goHome()">Home</a></li>
+                <li><a style="color:#798269; font-size:17px" href="#" ng-click="editProfile()">Gravatar</a></li>
+                <li><a style="color:#798269; font-size:17px" href="#" ng-click="createquote()">Add Stock</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="row container" class="span12">
+    <div  class="container">
+        <div class="row" class="span12" ng-controller="marketsController" style="margin-left:70px">
+            <span><h3 class="span1" style="text-align: center">Dow</h3></span>
+            <span><h3 class=" mkt span2"  ng-class="{'color-green': dj > djpc, 'color-red': dj < djpc, 'color-yellow': dj === djpc}" >{{dj |number:2}} </h3></span>
+            <span><h3 class="span1">S&P</h3></span>
+            <span><h3 class=" mkt span2" style="text-align: left" ng-class="{'color-green': sp > sppc, 'color-red': sp < sppc, 'color-yellow': sp === sppc}" >{{sp | number:2}}</h3></span>
+            <h3 class="span1" style="text-align: right">NASDQ</h3>
+            <h3 class="mkt span2" ng-class="{'color-green': nd > ndpc, 'color-red': nd < ndpc, 'color-yellow': nd === ndpc}" >{{nd | number:2}}</h3>
+            <!--<div class="span2" ng-controller="EditProfileController">
+                <img id="gravatar" style="max-height: 50px" ng-model="user.emailAddress" ng-src="{{getGravatarUrl(user.emailAddress)}}"/>
+            </div>  -->
+        </div>
+    </div>
+    <hr/>  
+    <hr/>   
+</div>
+
+    <div  style="margin: 50px">
+        <ng-view></ng-view>
+    </div>
+
+<script src="https://use.fontawesome.com/6b93835c03.js"></script>
+<script src="/lib/jquery.min.js"></script>
+<script src="/lib/underscore-1.4.4.min.js"></script>
+<script src="/lib/angular/angular.js"></script>
+<script src="/lib/angular/angular-resource.js"></script>
+<script src="/lib/angular/angular-route.min.js"></script>
+<script src="/js/angular-underscore-module.js"></script>
+<script src="/js/app.js"></script>
+<script src="/js/controllers/EditquoteController.js"></script>
+<script src="/js/controllers/QuoteController.js"></script>
+<script src="/js/controllers/QuoteListController.js"></script>
+<script src="/js/controllers/MainMenuController.js"></script>
+<script src="/js/controllers/EditProfileController.js"></script>
+<script src="/js/controllers/MarketsController.js"></script>
+<script src="/js/services/quoteData.js"></script>
+<script src="/js/services/quoteService.js"></script>
+<script src="/js/services/tickerService.js"></script>
+<script src="/lib/bootstrap.min.js"></script>
+</body>
+</html>

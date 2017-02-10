@@ -1,0 +1,42 @@
+<div style="margin-left: 5em; align-items:flex-start">
+    <ul class="thumbnails">
+        <li ng-repeat="quote in quotes|orderBy:sortorder" class="container-fluid" style="margin-left:5px">
+            
+                <div class="well hoverwell" style="min-height:100px; max-height:120px; min-width: 300px; max-width: 300px; padding:9px; margin-left:0px">
+                    <!--<button id="clsBtn" class="btn " style="float: right" ng-click="delQuote(quote.index)">
+                    <i class="fa fa-times" aria-hidden="true"></i>
+                    </button>-->
+                    <div>             
+                        <div class="row">
+                            <span class="span3">
+                                <a style="text-decoration: none" href="quote/{{quote.ticker}}">
+                                    <h4 style="color: #798269; margin-left: 0px; margin-top:5px">{{quote.name}}</h4>
+                                </a>
+                            </span>
+                            <span class="span1" style="margin-right:0px">
+                                <button id="clsBtn" class="btn" style="float:right; float:top; margin-right:0px;" ng-click="delQuote(quote.index)">
+                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                </button>
+                            </span>
+                        </div>
+                        <div>
+                            <!--<a style="text-decoration: none" href="quote/{{quote.ticker}}">-->
+                                <div class="row" sytle="margin-top:10px">
+                                    <span class="span1">Ticker:</span>
+                                    <span>{{quote.ticker | uppercase}}</span>
+                                </div>
+                                <div class="row">
+                                    <span class="span1">Exchange:</span>
+                                    <span class="span1"> {{quote.exchange}}</span>
+                                    <span style="margin-left: 75px; font-size: 20px" 
+                                        ng-class="{'color-green': quote.price > quote.PreviousClose, 'color-red': quote.price < quote.PreviousClose, 'color-blue': quote.price === quote.PreviousClose}">{{quote.price | currency}}
+                                    </span>                                    
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            <!--</a>-->
+        </li>
+    </ul>
+</div>

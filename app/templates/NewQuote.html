@@ -1,0 +1,22 @@
+<div ng-controller="EditquoteController" style="padding-left:20px; padding-right:20px">
+    <div class="container">
+
+      <h1 style="margin-top: 0px">New Stock Quote</h1>
+      <form name="newquoteForm" style="padding-left: 20px">
+        <fieldset>
+          <div class="row">
+            <label for="quoteTicker">Stock Ticker: &nbsp<span style="text-transform:uppercase; color:greenyellow">{{quote.ticker}}</span></label> 
+            <input id="quoteTicker" type="text" style="text-transform:uppercase" required ng-model="quote.ticker" placeholder="symbol/ticker" />
+          </div>
+          <div class="row">
+            <button type="submit" ng-disabled="newquoteForm.$invalid" ng-click="savequote(quote, newquoteForm)" class="btn btn-primary">Save</button>
+            <button type="button" ng-click="cancelquote()" class="btn btn-default">Cancel</button>
+          </div> 
+          <div class="row" style="margin-top:10px">Note: Bad requests will fail silently.</div>
+        </fieldset>
+      </form>
+      <hr/>
+
+
+    </div>
+</div>
