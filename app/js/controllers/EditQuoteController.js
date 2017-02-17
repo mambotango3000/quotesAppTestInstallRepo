@@ -5,6 +5,13 @@ quotesApp.controller('EditquoteController',
 
         $scope.quote = {};
 
+        $scope.tagTransform = function (newTag) {
+        var item = {
+           ticker: newTag
+        };
+        return item;
+        };
+
         $scope.savequote = function(quote, newquoteForm) {
             if(newquoteForm.$valid) {
                 $scope.quote.ticker = quote.ticker;
@@ -29,6 +36,7 @@ quotesApp.controller('EditquoteController',
                 };
 
                 quoteService.getThumbData(quote.ticker).then(onThumbComplete, onError);
+                
 
                 $timeout($scope.goBackHome, 1500);
                 

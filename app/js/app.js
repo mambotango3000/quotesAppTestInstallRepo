@@ -1,6 +1,6 @@
 'use strict';
 
-var quotesApp = angular.module('quotesApp', ['ngResource', 'ngRoute', 'underscore'])
+var quotesApp = angular.module('quotesApp', ['ngResource', 'ngRoute', 'underscore', 'ngSanitize', 'ui.select'])
     .config(function($routeProvider, $locationProvider) {
         $routeProvider.when('/newquote',
             {
@@ -30,5 +30,6 @@ var quotesApp = angular.module('quotesApp', ['ngResource', 'ngRoute', 'underscor
         quotesApp.constant('_',
             window._
         ); 
+
 
     });

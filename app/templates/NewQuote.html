@@ -2,11 +2,11 @@
     <div class="container">
 
       <h1 style="margin-top: 0px">New Stock Quote</h1>
-      <form name="newquoteForm" style="padding-left: 20px">
+      <!--<form name="newquoteForm" style="padding-left: 20px">
         <fieldset>
           <div class="row">
             <label for="quoteTicker">Stock Ticker: &nbsp<span style="text-transform:uppercase; color:greenyellow">{{quote.ticker}}</span></label> 
-            <input id="quoteTicker" type="text" style="text-transform:uppercase" required ng-model="quote.ticker" placeholder="symbol/ticker" />
+            <input id="quoteTicker" type="text" style="text-transform:uppercase" required ng-model="quote.ticker" placeholder="ticker/ticker" />
           </div>
           <div class="row">
             <button type="submit" ng-disabled="newquoteForm.$invalid" ng-click="savequote(quote, newquoteForm)" class="btn btn-primary">Save</button>
@@ -14,7 +14,30 @@
           </div> 
           <div class="row" style="margin-top:10px">Note: Bad requests will fail silently.</div>
         </fieldset>
+      </form>-->
+      <!--<hr/>-->
+
+      <!--<div ng-controller="DemoCtrl">-->
+      <form ng-controller="DemoCtrl" name="newquoteForm" style="padding-left: 20px">
+        <fieldset>
+          <div class="row">
+            <span style="text-transform:uppercase; color:greenyellow; font-size: 24px; float:right; margin-right: 7em">{{quote.selected.Name}}</span>
+            <ui-select tagging="tagTransform" tagging-label="new tag" required ng-model="quote.selected" theme="selectize" ng-disabled="disabled" style="width: 300px">
+            <ui-select-match placeholder="Search for a Company/Ticker...">{{$select.selected.Name}}</ui-select-match>
+            <ui-select-choices repeat="quote in quotes | filter: $select.search">
+              <span ng-bind-html="quote.Name | highlight: $select.search" ></span>
+              <small ng-bind-html="quote.ticker | highlight: $select.search"></small>
+            </ui-select-choices>
+            </ui-select>
+            
+          </div>
+          <div class="row">
+            <button type="submit" ng-disabled="newquoteForm.$invalid" ng-click="savequote(quote.selected, newquoteForm)" class="btn btn-primary">Save</button>
+            <button type="button" ng-click="cancelquote()" class="btn btn-default">Cancel</button>
+          </div> 
+        </fieldset>
       </form>
+
       <hr/>
 
 

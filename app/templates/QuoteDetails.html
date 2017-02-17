@@ -18,6 +18,7 @@
         <div><strong>% Change:&nbsp</strong> {{quote.PercentChange}}</div>
         <div><strong>Days Range:&nbsp</strong> {{quote.DaysRange}}</div>
       </div>
+      
       <span class="span3" id="quote">
         <h2 ng-class="{'color-green': quote.price > quote.PreviousClose, 'color-red': quote.price < quote.PreviousClose, 'color-blue': quote.price === quote.PreviousClose}">${{quote.price | number:2}}</h2>
       </span>
